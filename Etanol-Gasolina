@@ -1,0 +1,9 @@
+precoEtanolPorLitro = float(input())
+precoGasolinaPorLitro = float(input())
+
+valor = precoEtanolPorLitro / precoGasolinaPorLitro
+
+if valor <= 0.70:
+    print("O etanol vale mais a pena")
+else:
+    print("A gasolina vale mais a pena")
