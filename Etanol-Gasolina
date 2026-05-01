@@ -7,3 +7,6 @@ if valor <= 0.70:
     print("O etanol vale mais a pena")
 else:
     print("A gasolina vale mais a pena")
+    
+print(f"O preço do etanol é:{precoEtanolPorLitro:.2f}")
+print(f"O preço da gasolina é:{precoGasolinaPorLitro:.2f}")
