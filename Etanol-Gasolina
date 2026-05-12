@@ -12,9 +12,9 @@ while True:
         precoEtanolPorLitro = float(input("Digite o preço do etanol: R$ "))
         precoGasolinaPorLitro = float(input("Digite o preço da gasolina: R$ "))
 
-        valor = precoEtanolPorLitro / precoGasolinaPorLitro
+        valor = (precoEtanolPorLitro / precoGasolinaPorLitro) * 100
 
-        print(f"\nRelação etanol/gasolina: {valor:.2f}")
+        print(f"\nRelação etanol/gasolina: {valor:.2f}%")
 
         if valor <= 0.70:
             print("O etanol vale mais a pena")
@@ -29,4 +29,4 @@ while True:
         break
 
     else:
-        print("Opção inválida, tente novamente.")   
+        print("Opção inválida, tente novamente.") 
