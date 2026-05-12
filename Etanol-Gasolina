@@ -1,12 +1,32 @@
-precoEtanolPorLitro = float(input())
-precoGasolinaPorLitro = float(input())
+def menuPrecos():
+    print("\n--- MENU DE OPÇÕES ---")
+    print("1. Calcular Preço")
+    print("2. Sair")
+    return input("Escolha uma opção: ")
 
-valor = precoEtanolPorLitro / precoGasolinaPorLitro
 
-if valor <= 0.70:
-    print("O etanol vale mais a pena")
-else:
-    print("A gasolina vale mais a pena")
-    
-print(f"O preço do etanol é:{precoEtanolPorLitro:.2f}")
-print(f"O preço da gasolina é:{precoGasolinaPorLitro:.2f}")
+while True:
+    opcao = menuPrecos()
+
+    if opcao == "1":
+        precoEtanolPorLitro = float(input("Digite o preço do etanol: R$ "))
+        precoGasolinaPorLitro = float(input("Digite o preço da gasolina: R$ "))
+
+        valor = precoEtanolPorLitro / precoGasolinaPorLitro
+
+        print(f"\nRelação etanol/gasolina: {valor:.2f}")
+
+        if valor <= 0.70:
+            print("O etanol vale mais a pena")
+        else:
+            print("A gasolina vale mais a pena")
+
+        print(f"Preço do etanol: R$ {precoEtanolPorLitro:.2f}")
+        print(f"Preço da gasolina: R$ {precoGasolinaPorLitro:.2f}")
+
+    elif opcao == "2":
+        print("Programa encerrado.")
+        break
+
+    else:
+        print("Opção inválida, tente novamente.")   
