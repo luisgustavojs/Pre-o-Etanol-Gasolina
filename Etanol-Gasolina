@@ -14,7 +14,7 @@ while True:
 
         valor = (precoEtanolPorLitro / precoGasolinaPorLitro) * 100
 
-        print(f"\nRelação etanol/gasolina: {valor:.2f}%")
+        print(f"Relação etanol/gasolina: {valor:.2f}%")
 
         if valor <= 0.70:
             print("O etanol vale mais a pena")
