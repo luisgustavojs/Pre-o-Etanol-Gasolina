@@ -16,7 +16,7 @@ while True:
 
         print(f"Relação etanol/gasolina: {valor:.2f}%")
 
-        if valor <= 0.70:
+        if valor <= 70:
             print("O etanol vale mais a pena")
         else:
             print("A gasolina vale mais a pena")
@@ -29,4 +29,4 @@ while True:
         break
 
     else:
-        print("Opção inválida, tente novamente.") 
+        print("Opção inválida, tente novamente.")
