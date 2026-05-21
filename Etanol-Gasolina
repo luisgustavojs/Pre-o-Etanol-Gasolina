@@ -1,7 +1,8 @@
 def menuPrecos():
     print("\n--- MENU DE OPÇÕES ---")
-    print("1. Calcular Preço")
-    print("2. Sair")
+    print("1. Calcular Preço do Etanol/Gasolina")
+    print("2. Calcular Valor IPVA")
+    print("3. Sair")
     return input("Escolha uma opção: ")
 
 
@@ -23,8 +24,16 @@ while True:
 
         print(f"Preço do etanol: R$ {precoEtanolPorLitro:.2f}")
         print(f"Preço da gasolina: R$ {precoGasolinaPorLitro:.2f}")
+        
+    elif opcao == "2":  
+        valorDoCarro = float(input("Digite o valor do seu carro, segundo a FIPE: R$"))
+        aliquota = float(input("Digite o valor da alíquota do IPVA do seu estado(%):"))
+        
+        valorIPVA = valorDoCarro * (aliquota/100)
+        
+        print(f"O valor do IPVA a ser pago será: R$ {valorIPVA:.2f}")
 
-    elif opcao == "2":
+    elif opcao == "3":
         print("Programa encerrado.")
         break
 
