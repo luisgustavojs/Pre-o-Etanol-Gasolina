@@ -1,0 +1,45 @@
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+@app.route("/", methods=["GET", "POST"])
+def home():
+
+    resultado = ""
+
+    if request.method == "POST":
+
+        tipo = request.form["tipo"]
+
+        if tipo == "combustivel":
+
+            precoEtanol = float(request.form["etanol"])
+            precoGasolina = float(request.form["gasolina"])
+
+            valor = (precoEtanol / precoGasolina) * 100
+
+            if valor <= 70:
+                recomendacao = "O etanol vale mais a pena"
+            else:
+                recomendacao = "A gasolina vale mais a pena"
+
+            resultado = f"""
+            Relação: {valor:.2f}% <br>
+            {recomendacao}
+            """
+
+        elif tipo == "ipva":
+
+            valorCarro = float(request.form["carro"])
+            aliquota = float(request.form["aliquota"])
+
+            valorIPVA = valorCarro * (aliquota / 100)
+
+            resultado = f"""
+            O valor do IPVA será: R$ {valorIPVA:.2f}
+            """
+
+    return render_template("index.html", resultado=resultado)
+
+if __name__ == "__main__":
+    app.run(debug=True)
