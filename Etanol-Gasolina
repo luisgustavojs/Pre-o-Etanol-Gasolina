@@ -1,19 +1,76 @@
+class Carro:
+
+    def __init__(self, marca, modelo, ano, preco):
+        self.marca = marca
+        self.modelo = modelo
+        self.ano = ano
+        self.preco = preco
+
+    def exibir_detalhes(self):
+
+        print(f"""
+Marca: {self.marca}
+Modelo: {self.modelo}
+Ano: {self.ano}
+Preço: R$ {self.preco:,.2f}
+""")
+
+
+# ==========================================
+# LISTA DE CARROS
+# ==========================================
+
+carros = [
+    Carro("Toyota", "Corolla", 2023, 148900),
+    Carro("Honda", "Civic", 2024, 165000),
+    Carro("Hyundai", "HB20", 2022, 79900),
+    Carro("Volkswagen", "Jetta GLI", 2024, 245000),
+    Carro("Jeep", "Compass", 2022, 125900),
+    Carro("Fiat", "Uno Mille Economy(COM OU SEM ESCADA)", 2006, 17800),
+]
+
+
+# ==========================================
+# MENU
+# ==========================================
+
 def menuPrecos():
+
     print("\n--- MENU DE OPÇÕES ---")
     print("1. Calcular Preço do Etanol/Gasolina")
-    print("2. Calcular Valor IPVA")
-    print("3. Sair")
+    print("2. Painel de Preços de Carros")
+    print("3. Calcular Valor IPVA")
+    print("4. Sair")
+
     return input("Escolha uma opção: ")
 
 
+# ==========================================
+# LOOP PRINCIPAL
+# ==========================================
+
 while True:
+
     opcao = menuPrecos()
 
-    if opcao == "1":
-        precoEtanolPorLitro = float(input("Digite o preço do etanol: R$ "))
-        precoGasolinaPorLitro = float(input("Digite o preço da gasolina: R$ "))
+    # ======================================
+    # ETANOL X GASOLINA
+    # ======================================
 
-        valor = (precoEtanolPorLitro / precoGasolinaPorLitro) * 100
+    if opcao == "1":
+
+        precoEtanolPorLitro = float(
+            input("Digite o preço do etanol: R$ ")
+        )
+
+        precoGasolinaPorLitro = float(
+            input("Digite o preço da gasolina: R$ ")
+        )
+
+        valor = (
+            precoEtanolPorLitro /
+            precoGasolinaPorLitro
+        ) * 100
 
         print(f"Relação etanol/gasolina: {valor:.2f}%")
 
@@ -24,24 +81,73 @@ while True:
 
         print(f"Preço do etanol: R$ {precoEtanolPorLitro:.2f}")
         print(f"Preço da gasolina: R$ {precoGasolinaPorLitro:.2f}")
-        
-    elif opcao == "2":  
-        anoDoCarro = int(input("Digite o ano de fabricação do carro:"))
-        valorDoCarro = float(input("Digite o valor do seu carro, segundo a FIPE: R$"))
-        aliquota = float(input("Digite o valor da alíquota do IPVA do seu estado(%):"))
-        
-        if anoDoCarro <= 2006:
-            valorIPVA = 0
-        
+
+    # ======================================
+    # PAINEL DE CARROS
+    # ======================================
+
+    elif opcao == "2":
+
+        print("\n===== PAINEL DE CARROS =====")
+
+        for i, carro in enumerate(carros, start=1):
+
+            print(f"{i}. {carro.marca} {carro.modelo}")
+
+        escolha = int(
+            input("\nDigite o número do carro para ver detalhes: ")
+        )
+
+        if 1 <= escolha <= len(carros):
+
+            carroSelecionado = carros[escolha - 1]
+
+            print("\n===== DETALHES DO CARRO =====")
+
+            carroSelecionado.exibir_detalhes()
+
         else:
-            valorIPVA = valorDoCarro * (aliquota/100)
-        
-        print(f"O ano do seu carro é: {anoDoCarro}") 
-        print(f"O valor do IPVA a ser pago será: R$ {valorIPVA:.2f}")
+            print("Carro inválido.")
+
+    # ======================================
+    # CALCULAR IPVA
+    # ======================================
 
     elif opcao == "3":
+
+        anoDoCarro = int(
+            input("Digite o ano de fabricação do carro: ")
+        )
+
+        valorDoCarro = float(
+            input("Digite o valor do seu carro segundo a FIPE: R$ ")
+        )
+
+        aliquota = float(
+            input("Digite a alíquota do IPVA do seu estado (%): ")
+        )
+
+        if anoDoCarro <= 2006:
+            valorIPVA = 0
+
+        else:
+            valorIPVA = valorDoCarro * (aliquota / 100)
+
+        print(f"O ano do seu carro é: {anoDoCarro}")
+        print(f"O valor do IPVA a ser pago será: R$ {valorIPVA:.2f}")
+
+    # ======================================
+    # SAIR
+    # ======================================
+
+    elif opcao == "4":
+
         print("Programa encerrado.")
         break
+
+    # ======================================
+    # OPÇÃO INVÁLIDA
+    # ======================================
 
     else:
         print("Opção inválida, tente novamente.")
