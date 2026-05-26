@@ -26,11 +26,17 @@ while True:
         print(f"Preço da gasolina: R$ {precoGasolinaPorLitro:.2f}")
         
     elif opcao == "2":  
+        anoDoCarro = int(input("Digite o ano de fabricação do carro:"))
         valorDoCarro = float(input("Digite o valor do seu carro, segundo a FIPE: R$"))
         aliquota = float(input("Digite o valor da alíquota do IPVA do seu estado(%):"))
         
-        valorIPVA = valorDoCarro * (aliquota/100)
+        if anoDoCarro <= 2006:
+            valorIPVA = 0
         
+        else:
+            valorIPVA = valorDoCarro * (aliquota/100)
+        
+        print(f"O ano do seu carro é: {anoDoCarro}") 
         print(f"O valor do IPVA a ser pago será: R$ {valorIPVA:.2f}")
 
     elif opcao == "3":
