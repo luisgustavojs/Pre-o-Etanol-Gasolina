@@ -27,6 +27,7 @@ carros = [
     Carro("Volkswagen", "Jetta GLI", 2024, 245000),
     Carro("Jeep", "Compass", 2022, 125900),
     Carro("Fiat", "Uno Mille Economy(COM OU SEM ESCADA)", 2006, 17800),
+    Carro("BYD", "Song Plus", 2026, 149990),
 ]
 
 
