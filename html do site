@@ -1,55 +1,79 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
-    <title>Calculadora</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Automotivo</title>
 
     <style>
 
         body{
-            font-family: Arial;
-            background-color: #222;
-            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f4f4;
             padding: 30px;
         }
 
-        .box{
-            background-color: #333;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+        h1{
+            color: #333;
         }
 
-        input{
-            margin: 5px;
-            padding: 8px;
+        .caixa{
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        input, select, button{
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         button{
-            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
             cursor: pointer;
+        }
+
+        button:hover{
+            background-color: #0056b3;
+        }
+
+        .resultado{
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
         }
 
     </style>
 
 </head>
-
 <body>
 
-    <h1>Calculadora de Combustível e IPVA</h1>
+    <h1>Sistema Automotivo</h1>
 
-    <div class="box">
+    <!-- ========================= -->
+    <!-- COMBUSTÍVEL -->
+    <!-- ========================= -->
 
-        <h2>Etanol vs Gasolina</h2>
+    <div class="caixa">
+
+        <h2>Etanol ou Gasolina</h2>
 
         <form method="POST">
 
             <input type="hidden" name="tipo" value="combustivel">
 
-            <input type="number" step="0.01" name="etanol" placeholder="Preço Etanol" required>
+            <label>Preço do Etanol:</label>
+            <input type="number" step="0.01" name="etanol" required>
 
-            <input type="number" step="0.01" name="gasolina" placeholder="Preço Gasolina" required>
+            <label>Preço da Gasolina:</label>
+            <input type="number" step="0.01" name="gasolina" required>
 
             <button type="submit">Calcular</button>
 
@@ -57,7 +81,11 @@
 
     </div>
 
-    <div class="box">
+    <!-- ========================= -->
+    <!-- IPVA -->
+    <!-- ========================= -->
+
+    <div class="caixa">
 
         <h2>Calcular IPVA</h2>
 
@@ -65,21 +93,69 @@
 
             <input type="hidden" name="tipo" value="ipva">
 
-            <input type="number" step="0.01" name="carro" placeholder="Valor do carro" required>
+            <label>Valor do carro:</label>
+            <input type="number" step="0.01" name="carro" required>
 
-            <input type="number" step="0.01" name="aliquota" placeholder="Alíquota (%)" required>
+            <label>Alíquota (%):</label>
+            <input type="number" step="0.01" name="aliquota" required>
 
-            <button type="submit">Calcular</button>
+            <button type="submit">Calcular IPVA</button>
 
         </form>
 
     </div>
 
-    <div class="box">
-        <h2>Resultado</h2>
-        <p>{{ resultado|safe }}</p>
+    <!-- ========================= -->
+    <!-- DETALHES DOS CARROS -->
+    <!-- ========================= -->
+
+    <div class="caixa">
+
+        <h2>Detalhes dos Carros</h2>
+
+        <form method="POST">
+
+            <input type="hidden" name="tipo" value="detalhes">
+
+            <label>Escolha um carro:</label>
+
+            <select name="indice">
+
+                {% for carro in carros %}
+
+                    <option value="{{ loop.index0 }}">
+                        {{ carro.marca }} - {{ carro.modelo }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+            <button type="submit">Ver Detalhes</button>
+
+        </form>
+
     </div>
 
-</body>
+    <!-- ========================= -->
+    <!-- RESULTADOS -->
+    <!-- ========================= -->
 
+    {% if resultado %}
+
+        <div class="caixa resultado">
+            {{ resultado|safe }}
+        </div>
+
+    {% endif %}
+
+    {% if detalhesCarro %}
+
+        <div class="caixa resultado">
+            {{ detalhesCarro|safe }}
+        </div>
+
+    {% endif %}
+
+</body>
 </html>
