@@ -1,15 +1,38 @@
 from flask import Flask, render_template, request
 
+class Carro:
+
+    def __init__(self, marca, modelo, ano, preco):
+        self.marca = marca
+        self.modelo = modelo
+        self.ano = ano
+        self.preco = preco
+
+
+carros = [
+    Carro("Toyota", "Corolla", 2023, 148900),
+    Carro("Honda", "Civic", 2024, 165000),
+    Carro("Hyundai", "HB20", 2022, 79900),
+    Carro("Volkswagen", "Jetta GLI", 2024, 245000),
+    Carro("Jeep", "Compass", 2022, 125900),
+    Carro("Fiat", "Uno Mille Economy", 2006, 17800),
+]
+
 app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def home():
 
     resultado = ""
+    detalhesCarro = ""
 
     if request.method == "POST":
 
         tipo = request.form["tipo"]
+
+        # =========================
+        # COMBUSTÍVEL
+        # =========================
 
         if tipo == "combustivel":
 
@@ -28,6 +51,10 @@ def home():
             {recomendacao}
             """
 
+        # =========================
+        # IPVA
+        # =========================
+
         elif tipo == "ipva":
 
             valorCarro = float(request.form["carro"])
@@ -39,7 +66,29 @@ def home():
             O valor do IPVA será: R$ {valorIPVA:.2f}
             """
 
-    return render_template("index.html", resultado=resultado)
+        # =========================
+        # DETALHES DO CARRO
+        # =========================
+
+        elif tipo == "detalhes":
+
+            indice = int(request.form["indice"])
+
+            carro = carros[indice]
+
+            detalhesCarro = f"""
+            Marca: {carro.marca}<br>
+            Modelo: {carro.modelo}<br>
+            Ano: {carro.ano}<br>
+            Preço: R$ {carro.preco:,.2f}
+            """
+
+    return render_template(
+        "index.html",
+        resultado=resultado,
+        detalhesCarro=detalhesCarro,
+        carros=carros
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)
