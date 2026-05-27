@@ -68,37 +68,40 @@
         <!-- IPVA -->
         <!-- ========================= -->
 
-        <div class="caixa">
+       <h2>Calcular IPVA</h2>
 
-            <h2>Calcular IPVA</h2>
+<form method="POST">
 
-            <form method="POST">
+    <input type="hidden" name="tipo" value="ipva">
 
-                <input type="hidden" name="tipo" value="ipva">
+    <label>Ano do carro:</label>
 
-                <label>Valor do carro:</label>
+    <input
+    type="number"
+    name="ano"
+    required>
 
-                <input
-                type="number"
-                step="0.01"
-                name="carro"
-                required>
+    <label>Valor do carro:</label>
 
-                <label>Alíquota (%):</label>
+    <input
+    type="number"
+    step="0.01"
+    name="carro"
+    required>
 
-                <input
-                type="number"
-                step="0.01"
-                name="aliquota"
-                required>
+    <label>Alíquota (%):</label>
 
-                <button type="submit">
-                    Calcular IPVA
-                </button>
+    <input
+    type="number"
+    step="0.01"
+    name="aliquota"
+    required>
 
-            </form>
+    <button type="submit">
+        Calcular IPVA
+    </button>
 
-        </div>
+</form>
 
         <!-- ========================= -->
         <!-- DETALHES DOS CARROS -->
