@@ -112,12 +112,20 @@ def home():
 
         elif tipo == "ipva":
 
+            anoDoCarro = int(request.form["ano"])
             valorCarro = float(request.form["carro"])
             aliquota = float(request.form["aliquota"])
 
-            valorIPVA = valorCarro * (aliquota / 100)
 
-            resultado = f"""
+
+            if anoDoCarro <= 2006:
+                valorIPVA = 0
+                resultado = f"""
+        Este veículo está isento de IPVA
+        """
+            else:
+                valorIPVA = valorCarro * (aliquota / 100)
+                resultado = f"""
             O valor do IPVA será: R$ {valorIPVA:.2f}
             """
 
