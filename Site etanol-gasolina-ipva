@@ -2,22 +2,76 @@ from flask import Flask, render_template, request
 
 class Carro:
 
-    def __init__(self, marca, modelo, ano, preco):
+    def __init__(self, marca, modelo, ano, preco, imagem, logo):
         self.marca = marca
         self.modelo = modelo
         self.ano = ano
         self.preco = preco
+        self.imagem = imagem
+        self.logo = logo
 
-
+#MODELOS DOS CARROS
 carros = [
-    Carro("Toyota", "Corolla", 2023, 148900),
-    Carro("Honda", "Civic", 2024, 165000),
-    Carro("Hyundai", "HB20", 2022, 79900),
-    Carro("Volkswagen", "Jetta GLI", 2024, 245000),
-    Carro("Jeep", "Compass", 2022, 125900),
-    Carro("Fiat", "Uno Mille Economy", 2006, 17800),
-    Carro("BYD", "Song Plus", 2026, 149990),
+
+    Carro(
+        "Toyota",
+        "Corolla",
+        2023,
+        148900,
+        "carros/corolla.jpg",
+        "logos/toyota.png"
+    ),
+
+    Carro(
+        "Honda",
+        "Civic",
+        2024,
+        165000,
+        "carros/civic.jpg",
+        "logos/honda.png"
+    ),
+
+    Carro(
+        "Hyundai",
+        "HB20",
+        2022,
+        79900,
+        "carros/hb20.jpg",
+        "logos/hyundai.png"
+    ),
+
+    Carro(
+        "Volkswagen",
+        "Jetta GLI",
+        2024,
+        245000,
+        "carros/jetta.jpg",
+        "logos/volkswagen.png"
+    ),
+    Carro(
+        "Jeep", 
+        "Compass", 
+        2022, 
+        125900,
+        "carros/compass.jpg",
+        "logos/jeep.png"
+        ),
+
+    Carro("Fiat", 
+          "Uno Mille Economy", 
+          2006, 
+          17800,
+          "carros/unomille.jpg",
+          "logos/fiat.png"),
+    Carro("BYD", 
+          "Song Plus", 
+          2026, 
+          149990,
+          "carros/songplus.jpg",
+          "logos/byd.png"),
 ]
+
+
 
 app = Flask(__name__)
 
@@ -77,11 +131,18 @@ def home():
 
             carro = carros[indice]
 
+            precoFormatado = (
+                f"{carro.preco:,.2f}"
+                  .replace(",", "X")
+                     .replace(".", ",")
+                        .replace("X", ".")
+)
+
             detalhesCarro = f"""
             Marca: {carro.marca}<br>
             Modelo: {carro.modelo}<br>
             Ano: {carro.ano}<br>
-            Preço: R$ {carro.preco:,.2f}
+            Preço: R$ {precoFormatado}
             """
 
     return render_template(
