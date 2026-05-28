@@ -2,11 +2,12 @@ from flask import Flask, render_template, request
 
 class Carro:
 
-    def __init__(self, marca, modelo, ano, preco, imagem, logo):
+    def __init__(self, marca, modelo, ano, preco, categoria, imagem, logo):
         self.marca = marca
         self.modelo = modelo
         self.ano = ano
         self.preco = preco
+        self.categoria = categoria
         self.imagem = imagem
         self.logo = logo
 
@@ -18,6 +19,7 @@ carros = [
         "Corolla",
         2023,
         148900,
+        "Sedan",
         "carros/corolla.jpg",
         "logos/toyota.png"
     ),
@@ -27,6 +29,7 @@ carros = [
         "Civic",
         2024,
         165000,
+        "Sedan",
         "carros/civic.jpg",
         "logos/honda.png"
     ),
@@ -36,6 +39,7 @@ carros = [
         "HB20",
         2022,
         79900,
+        "Hatch",
         "carros/hb20.jpg",
         "logos/hyundai.png"
     ),
@@ -45,6 +49,7 @@ carros = [
         "Jetta GLI",
         2024,
         245000,
+        "Sedan",
         "carros/jetta.jpg",
         "logos/volkswagen.png"
     ),
@@ -53,6 +58,7 @@ carros = [
         "Compass", 
         2022, 
         125900,
+        "SUV",
         "carros/compass.jpg",
         "logos/jeep.png"
         ),
@@ -61,12 +67,14 @@ carros = [
           "Uno Mille Economy", 
           2006, 
           17800,
+          "Hatch",
           "carros/unomille.jpg",
           "logos/fiat.png"),
     Carro("BYD", 
           "Song Plus", 
           2026, 
           149990,
+          "SUV",
           "carros/songplus.jpg",
           "logos/byd.png"),
     Carro(
@@ -74,6 +82,7 @@ carros = [
         "Gol",
         2012,
         31990,
+        "Hatch",
         "carros/gol.jpg",
         "logos/volkswagen.png"
     ),
@@ -82,6 +91,7 @@ carros = [
         "Celta",
         2011,
         22500,
+        "Hatch",
         "carros/celta.jpg",
         "logos/chevrolet.png"
     ),
@@ -90,6 +100,7 @@ carros = [
         "Sentra",
         2023,
         122000,
+        "Sedan",
         "carros/sentra.jpg",
         "logos/nissan.png"
     ),
@@ -98,6 +109,7 @@ carros = [
         "Hilux",
         2018,
         200000,
+        "Pickup",
         "carros/hilux.jpg",
         "logos/toyota.png"
     ),
@@ -184,6 +196,7 @@ def home():
             Modelo: {carro.modelo}<br>
             Ano: {carro.ano}<br>
             Preço: R$ {precoFormatado}
+            Categoria: {carro.categoria}<br>
             """
 
     return render_template(
