@@ -211,7 +211,10 @@
                         .replace("X", ".") }}
 
                     </p>
+                     <h2 class="categoria">
 
+                        {{ carro.categoria }}
+                    </h2>
                     <a href="#" class="botao">
 
                         Ver detalhes
