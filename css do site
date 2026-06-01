@@ -1,101 +1,209 @@
+/* ========================= */
+/* RESET */
+/* ========================= */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
 }
+
+/* ========================= */
+/* BODY */
+/* ========================= */
 
 body{
-    background:#f5f6fa;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f4f4;
+    color:#333;
 }
 
+/* ========================= */
 /* NAVBAR */
+/* ========================= */
 
 .navbar{
-    background:#0d6efd;
+    background:#111;
     color:white;
-    padding:20px;
-    box-shadow:0 2px 10px rgba(0,0,0,.15);
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
 .navbar h1{
-    text-align:center;
+    color:white;
 }
 
+.navbar nav{
+    display:flex;
+    gap:20px;
+}
+
+.navbar nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.navbar nav a:hover{
+    color:#e53935;
+}
+
+/* ========================= */
+/* HERO */
+/* ========================= */
+
+.hero{
+    background:linear-gradient(
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0.6)
+    );
+    padding:80px 20px;
+    text-align:center;
+    color:white;
+}
+
+.hero h2{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:18px;
+    margin-bottom:25px;
+}
+
+.busca-principal{
+    max-width:700px;
+    margin:auto;
+    display:flex;
+    gap:10px;
+}
+
+.busca-principal input{
+    flex:1;
+}
+
+/* ========================= */
 /* CONTAINER */
+/* ========================= */
 
 .container{
     width:90%;
     max-width:1400px;
     margin:auto;
-    padding:20px;
+    padding:30px 0;
 }
 
+/* ========================= */
 /* CAIXAS */
+/* ========================= */
 
 .caixa{
     background:white;
     padding:20px;
-    border-radius:15px;
     margin-bottom:25px;
-    box-shadow:0 3px 10px rgba(0,0,0,.1);
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
 }
 
-h2{
+.caixa h2{
     margin-bottom:15px;
-    color:#333;
 }
+
+/* ========================= */
+/* FORMULÁRIOS */
+/* ========================= */
 
 input,
 select{
     width:100%;
     padding:12px;
-    border:1px solid #ddd;
+    border:1px solid #ccc;
     border-radius:8px;
-    margin-bottom:10px;
+    margin-top:8px;
+    margin-bottom:15px;
+    font-size:15px;
 }
 
 button{
-    background:#0d6efd;
-    color:white;
+    width:100%;
+    padding:12px;
     border:none;
-    padding:12px 20px;
     border-radius:8px;
-    cursor:pointer;
+    background:#e53935;
+    color:white;
     font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
 }
 
 button:hover{
-    background:#0b5ed7;
+    background:#c62828;
 }
 
-/* RESULTADO */
+/* ========================= */
+/* GRID DE FERRAMENTAS */
+/* ========================= */
+
+.grid-ferramentas{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:20px;
+}
+
+/* ========================= */
+/* RESULTADOS */
+/* ========================= */
 
 .resultado{
-    background:#eef4ff;
-    border-left:5px solid #0d6efd;
+    background:#eef5ff;
+    border-left:5px solid #007BFF;
+    font-size:18px;
 }
 
+/* ========================= */
+/* TÍTULO VEÍCULOS */
+/* ========================= */
+
+.titulo-veiculos{
+    margin:30px 0;
+    text-align:center;
+}
+
+/* ========================= */
 /* CARDS */
+/* ========================= */
 
 .cards{
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
     gap:25px;
     margin-top:20px;
 }
+
+/* ========================= */
+/* CARD */
+/* ========================= */
 
 .card{
     background:white;
     border-radius:15px;
     overflow:hidden;
-    box-shadow:0 5px 15px rgba(0,0,0,.12);
-    transition:.3s;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    transition:0.3s;
 }
 
 .card:hover{
     transform:translateY(-5px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
 }
+
+/* ========================= */
+/* IMAGEM CARRO */
+/* ========================= */
 
 .imagem-carro{
     width:100%;
@@ -103,48 +211,107 @@ button:hover{
     object-fit:cover;
 }
 
+/* ========================= */
+/* INFORMAÇÕES */
+/* ========================= */
+
 .info{
     padding:20px;
 }
+
+/* ========================= */
+/* LOGO */
+/* ========================= */
 
 .logo{
     width:60px;
     height:60px;
     object-fit:contain;
+    display:block;
+    margin:0 auto 15px;
 }
 
+/* ========================= */
+/* MODELO */
+/* ========================= */
+
 .modelo{
-    font-size:22px;
-    margin:10px 0;
+    text-align:center;
+    color:#222;
+    margin-bottom:10px;
 }
+
+/* ========================= */
+/* ANO */
+/* ========================= */
 
 .ano{
     color:#666;
-    margin-bottom:8px;
+    margin-bottom:10px;
 }
+
+/* ========================= */
+/* CATEGORIA */
+/* ========================= */
 
 .categoria{
-    color:#666;
-    margin-bottom:8px;
+    display:inline-block;
+    background:#007BFF;
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:14px;
+    margin-bottom:10px;
 }
 
+/* ========================= */
+/* PREÇO */
+/* ========================= */
+
 .preco{
-    color:#0d6efd;
+    color:#e53935;
     font-size:28px;
     font-weight:bold;
-    margin:15px 0;
+    margin-top:15px;
 }
+
+/* ========================= */
+/* BOTÃO CARD */
+/* ========================= */
 
 .botao{
     display:block;
     text-align:center;
-    background:#0d6efd;
-    color:white;
     text-decoration:none;
+    background:#111;
+    color:white;
     padding:12px;
     border-radius:8px;
+    margin-top:15px;
+    transition:0.3s;
 }
 
 .botao:hover{
-    background:#0b5ed7;
+    background:#333;
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media(max-width:768px){
+
+    .navbar{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .busca-principal{
+        flex-direction:column;
+    }
+
+    .hero h2{
+        font-size:30px;
+    }
+
 }
