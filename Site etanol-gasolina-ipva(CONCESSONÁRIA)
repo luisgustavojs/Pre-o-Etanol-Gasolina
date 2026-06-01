@@ -136,6 +136,20 @@ def home():
     resultado = ""
     detalhesCarro = ""
 
+    # BUSCA
+    busca = request.args.get("busca", "")
+
+    carrosFiltrados = carros
+
+    if busca:
+
+        carrosFiltrados = [
+            carro for carro in carros
+            if busca.lower() in carro.marca.lower()
+            or busca.lower() in carro.modelo.lower()
+            or busca.lower() in carro.categoria.lower()
+        ]
+
     if request.method == "POST":
 
         tipo = request.form["tipo"]
@@ -171,18 +185,19 @@ def home():
             valorCarro = float(request.form["carro"])
             aliquota = float(request.form["aliquota"])
 
-
-
             if anoDoCarro <= 2006:
-                valorIPVA = 0
-                resultado = f"""
-        Este veículo está isento de IPVA
-        """
+
+                resultado = """
+                Este veículo está isento de IPVA
+                """
+
             else:
+
                 valorIPVA = valorCarro * (aliquota / 100)
+
                 resultado = f"""
-            O valor do IPVA será: R$ {valorIPVA:.2f}
-            """
+                O valor do IPVA será: R$ {valorIPVA:.2f}
+                """
 
         # =========================
         # DETALHES DO CARRO
@@ -196,16 +211,16 @@ def home():
 
             precoFormatado = (
                 f"{carro.preco:,.2f}"
-                  .replace(",", "X")
-                     .replace(".", ",")
-                        .replace("X", ".")
-)
+                .replace(",", "X")
+                .replace(".", ",")
+                .replace("X", ".")
+            )
 
             detalhesCarro = f"""
             Marca: {carro.marca}<br>
             Modelo: {carro.modelo}<br>
             Ano: {carro.ano}<br>
-            Preço: R$ {precoFormatado}
+            Preço: R$ {precoFormatado}<br>
             Categoria: {carro.categoria}<br>
             """
 
@@ -213,8 +228,9 @@ def home():
         "index.html",
         resultado=resultado,
         detalhesCarro=detalhesCarro,
-        carros=carros
+        carros=carrosFiltrados
     )
 
 if __name__ == "__main__":
     app.run(debug=True)
+    
