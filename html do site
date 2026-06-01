@@ -7,9 +7,8 @@
 
     <title>Sistema Automotivo</title>
 
-    <link
-rel="stylesheet"
-href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 
 </head>
 
@@ -17,25 +16,40 @@ href="{{ url_for('static', filename='style.css') }}">
 
     <!-- NAVBAR -->
 
-    <div class="navbar">
-        <h1>Sistema Automotivo</h1>
-    </div>
+    <header class="navbar">
 
-    <div class="container">
+        <div class="logo-site">
+            <h1>🚗 Sistema Automotivo</h1>
+        </div>
 
-        <!-- BUSCA -->
+        <nav>
+            <a href="#">Início</a>
+            <a href="#">Veículos</a>
+            <a href="#">IPVA</a>
+            <a href="#">Contato</a>
+        </nav>
 
-        <div class="caixa">
+    </header>
 
-            <h2>Buscar Veículo</h2>
+    <!-- BANNER -->
 
-            <form method="GET">
+    <section class="hero">
+
+        <div class="hero-texto">
+
+            <h2>Encontre seu próximo carro</h2>
+
+            <p>
+                Consulte veículos, calcule IPVA e compare combustível.
+            </p>
+
+            <form method="GET" class="busca-principal">
 
                 <input
                 type="text"
                 name="busca"
                 value="{{ request.args.get('busca', '') }}"
-                placeholder="Marca, modelo ou categoria">
+                placeholder="Buscar marca, modelo ou categoria">
 
                 <button type="submit">
                     Buscar
@@ -45,92 +59,106 @@ href="{{ url_for('static', filename='style.css') }}">
 
         </div>
 
-        <!-- ETANOL OU GASOLINA -->
+    </section>
 
-        <div class="caixa">
+    <div class="container">
 
-            <h2>Etanol ou Gasolina</h2>
+        <!-- FORMULÁRIOS -->
 
-            <form method="POST">
+        <div class="grid-ferramentas">
 
-                <input type="hidden" name="tipo" value="combustivel">
+            <!-- COMBUSTÍVEL -->
 
-                <label>Preço do Etanol:</label>
+            <div class="caixa">
 
-                <input
-                type="number"
-                step="0.01"
-                name="etanol"
-                required>
+                <h2>⛽ Etanol ou Gasolina</h2>
 
-                <label>Preço da Gasolina:</label>
+                <form method="POST">
 
-                <input
-                type="number"
-                step="0.01"
-                name="gasolina"
-                required>
+                    <input type="hidden"
+                           name="tipo"
+                           value="combustivel">
 
-                <button type="submit">
-                    Calcular
-                </button>
+                    <label>Preço do Etanol</label>
 
-            </form>
+                    <input
+                    type="number"
+                    step="0.01"
+                    name="etanol"
+                    required>
+
+                    <label>Preço da Gasolina</label>
+
+                    <input
+                    type="number"
+                    step="0.01"
+                    name="gasolina"
+                    required>
+
+                    <button type="submit">
+                        Calcular
+                    </button>
+
+                </form>
+
+            </div>
+
+            <!-- IPVA -->
+
+            <div class="caixa">
+
+                <h2>📄 Calcular IPVA</h2>
+
+                <form method="POST">
+
+                    <input type="hidden"
+                           name="tipo"
+                           value="ipva">
+
+                    <label>Ano do carro</label>
+
+                    <input
+                    type="number"
+                    name="ano"
+                    required>
+
+                    <label>Valor do carro</label>
+
+                    <input
+                    type="number"
+                    step="0.01"
+                    name="carro"
+                    required>
+
+                    <label>Alíquota (%)</label>
+
+                    <input
+                    type="number"
+                    step="0.01"
+                    name="aliquota"
+                    required>
+
+                    <button type="submit">
+                        Calcular IPVA
+                    </button>
+
+                </form>
+
+            </div>
 
         </div>
 
-        <!-- IPVA -->
+        <!-- DETALHES -->
 
         <div class="caixa">
 
-            <h2>Calcular IPVA</h2>
+            <h2>🔍 Detalhes dos Carros</h2>
 
             <form method="POST">
 
-                <input type="hidden" name="tipo" value="ipva">
-
-                <label>Ano do carro:</label>
-
-                <input
-                type="number"
-                name="ano"
-                required>
-
-                <label>Valor do carro:</label>
-
-                <input
-                type="number"
-                step="0.01"
-                name="carro"
-                required>
-
-                <label>Alíquota (%):</label>
-
-                <input
-                type="number"
-                step="0.01"
-                name="aliquota"
-                required>
-
-                <button type="submit">
-                    Calcular IPVA
-                </button>
-
-            </form>
-
-        </div>
-
-        <!-- DETALHES DOS CARROS -->
-
-        <div class="caixa">
-
-            <h2>Detalhes dos Carros</h2>
-
-            <form method="POST">
-
-                <input type="hidden" name="tipo" value="detalhes">
-
-                <label>Escolha um carro:</label>
+                <input type="hidden"
+                       name="tipo"
+                       value="detalhes">
 
                 <select name="indice">
 
@@ -157,7 +185,9 @@ href="{{ url_for('static', filename='style.css') }}">
         {% if resultado %}
 
         <div class="caixa resultado">
+
             {{ resultado|safe }}
+
         </div>
 
         {% endif %}
@@ -165,18 +195,8 @@ href="{{ url_for('static', filename='style.css') }}">
         {% if detalhesCarro %}
 
         <div class="caixa resultado">
+
             {{ detalhesCarro|safe }}
-        </div>
-
-        {% endif %}
-
-        <!-- NENHUM RESULTADO -->
-
-        {% if carros|length == 0 %}
-
-        <div class="caixa">
-
-            <h3>Nenhum veículo encontrado.</h3>
 
         </div>
 
@@ -184,7 +204,9 @@ href="{{ url_for('static', filename='style.css') }}">
 
         <!-- CARDS -->
 
-        <h2>Veículos Disponíveis</h2>
+        <h2 class="titulo-veiculos">
+            🚘 Veículos Disponíveis
+        </h2>
 
         <div class="cards">
 
@@ -204,29 +226,28 @@ href="{{ url_for('static', filename='style.css') }}">
                     src="{{ url_for('static', filename=carro.logo) }}"
                     alt="{{ carro.marca }}">
 
-                    <h2 class="modelo">
+                    <h3 class="modelo">
                         {{ carro.marca }} {{ carro.modelo }}
-                    </h2>
+                    </h3>
 
                     <p class="ano">
                         Ano: {{ carro.ano }}
                     </p>
 
                     <p class="categoria">
-                        Categoria: {{ carro.categoria }}
+                        {{ carro.categoria }}
                     </p>
 
                     <p class="preco">
+
                         R$
+
                         {{ "{:,.2f}".format(carro.preco)
                         .replace(",", "X")
                         .replace(".", ",")
                         .replace("X", ".") }}
-                    </p>
 
-                    <a href="#" class="botao">
-                        Ver detalhes
-                    </a>
+                    </p>
 
                 </div>
 
