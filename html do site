@@ -54,7 +54,24 @@
                 <button type="submit">
                     Buscar
                 </button>
+    <form method="GET">
 
+      <input
+      type="text"
+      name="busca"
+     placeholder="Marca, modelo ou categoria">
+
+       <select name="ordem">
+          <option value="">Ordenar por</option>
+          <option value="menor">Menor preço</option>
+           <option value="maior">Maior preço</option>
+        </select>
+
+    <button type="submit">
+        Buscar
+    </button>
+
+</form>
             </form>
 
         </div>
