@@ -150,6 +150,16 @@ carros = [
         "carros/creta.jpg",
         "logos/hyundai.png"
     ),
+    Carro(
+        "Volkswagen",
+        "Amarok",
+        2018,
+        128000,
+        "Pickup",
+        "carros/amarok.jpg",
+        "logos/volkswagen.png"
+    ),
+  
 ]
 
 
